@@ -10,7 +10,7 @@
 #define _MSL_AT_MODE_H_
 #include "r_typedefs.h"
 
-#define CMD_NUM   28
+#define CMD_NUM   34
 #define CMD_LEN   30
 
 #define MCU_CMD_NUM   2

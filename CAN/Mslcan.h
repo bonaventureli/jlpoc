@@ -63,17 +63,35 @@ typedef struct CANData{
 #define FRAME_ASSEMBLY_2	13
 
 /*add lifei 2018.10.11*/
-#define BM_SET_BM_Arm				14
-#define BM_UNSET_BM_Arm				15
-#define BM_DOOROPENCMD_LF				16
-#define BM_DOOROPENCMD_RF				17
-#define BM_DOOROPENCMD_LFRF				18
+//#define BM_SET_BM_Arm				14
+//#define BM_UNSET_BM_Arm				15
+//#define BM_DOOROPENCMD_LF				16
+//#define BM_DOOROPENCMD_RF				17
+//#define BM_DOOROPENCMD_LFRF				18
 				
-#define BLE_DISCONNECT				19
-#define BLE_CONNECT				20
-#define BM_POSITION_INSIDE				21
-#define BM_POSITION_OUTSIDE_NEAR				22
-#define BM_POSITION_OUTSIDE_FAR				23
+//#define BLE_DISCONNECT				19
+//#define BLE_CONNECT				20
+//#define BM_POSITION_INSIDE				21
+//#define BM_POSITION_OUTSIDE_NEAR				22
+//#define BM_POSITION_OUTSIDE_FAR				23
+
+#define	PROPERTY	0
+#define	CAN_BM_DOOR_OPEN_LF	1
+#define	CAN_BM_DOOR_ONE_LF	2
+#define	CAN_BM_DOOR_TWO_LF	3
+#define	CAN_BM_DOOR_THREE_LF	4
+#define	CAN_BM_DOOR_FOUR_LF	5
+#define	CAN_BM_DOOR_OPEN_RF	6
+#define	CAN_BM_DOOR_ONE_RF	7
+#define	CAN_BM_DOOR_TWO_RF	8
+#define	CAN_BM_DOOR_THREE_RF	9
+#define	CAN_BM_DOOR_FOUR_RF	10
+#define	CAN_BM_DOOR_OPEN_LFRF	11
+#define	CAN_CONNECT	12
+#define	CAN_DISCONNECT	13
+#define	CAN_CARIN	14
+#define	CAN_CAR_OUT_NEAR	15
+#define	CAN_CAR_OUT_FAR	16
 
 
 /*CAN Matrix*/
@@ -96,19 +114,19 @@ static T_CAN_MATRIX CANCmdMatrix[] = {
 /*12*/ { 0x000,  0,        0,		    1,	     0x01}, // FRAME_ASSEMBLY_1...
 /*13*/ { 0x000,  1,        0,		    8,	     0x60}, // FRAME_ASSEMBLY_2...	
 
-/*add lifei 2018.10.11*/
-/*14*/  { 0x4F2,  0,        0,		    2,	     0x01}, // Set_BM_Arm_Cmd
-/*15*/  { 0x4F2,  0,        0,		    2,	     0x02}, // UnSet_BM_Arm_Cmd
-/*16*/  { 0x4F2,  0,        2,		    2,	     0x01}, // BM_DoorOpenCmd_LF
-/*17*/  { 0x4F2,  0,        2,		    2,	     0x02}, // BM_DoorOpenCmd_RF
-/*18*/  { 0x4F2,  0,        2,		    2,	     0x03}, // BM_DoorOpenCmd_LFRF
+///*add lifei 2018.10.11*/
+///*14*/  { 0x4F2,  0,        0,		    2,	     0x01}, // Set_BM_Arm_Cmd
+///*15*/  { 0x4F2,  0,        0,		    2,	     0x02}, // UnSet_BM_Arm_Cmd
+///*16*/  { 0x4F2,  0,        2,		    2,	     0x01}, // BM_DoorOpenCmd_LF
+///*17*/  { 0x4F2,  0,        2,		    2,	     0x02}, // BM_DoorOpenCmd_RF
+///*18*/  { 0x4F2,  0,        2,		    2,	     0x03}, // BM_DoorOpenCmd_LFRF
 			
-/*19*/  { 0x4F4,  0,        0,		    1,	     0x00}, // BLE_disconnect
-/*20*/  { 0x4F4,  0,        0,		    1,	     0x01}, // BLE_connect
+///*19*/  { 0x4F4,  0,        0,		    1,	     0x00}, // BLE_disconnect
+///*20*/  { 0x4F4,  0,        0,		    1,	     0x01}, // BLE_connect
 
-/*21*/  { 0x4F4,  0,        1,		    2,	     0x01}, // BM_Position_Inside
-/*22*/  { 0x4F4,  0,        1,		    2,	     0x02}, // BM_Position_Outside_near
-/*23*/  { 0x4F4,  0,        1,		    2,	     0x03}, // BM_Position_Outside_far
+///*21*/  { 0x4F4,  0,        1,		    2,	     0x01}, // BM_Position_Inside
+///*22*/  { 0x4F4,  0,        1,		    2,	     0x02}, // BM_Position_Outside_near
+///*23*/  { 0x4F4,  0,        1,		    2,	     0x03}, // BM_Position_Outside_far
 
 
 };   // The define of CAN Matrix  
@@ -158,6 +176,7 @@ void MslCANPeriodTask(void);
 void MslCANSentFromSDK(int Opcodes);
 /*CAN CMD Execute*/
 void MslCANCmdExecute(uint8_t Function);
+void MslCANCmdExecuteNew(uint8_t Function);
 void MslCANCmdExecuteBM(uint8_t Function,uint8_t Function1);
 
 static void MslCANCmdRespond(T_CANDATA *TxData,T_CANDATA *RxData);

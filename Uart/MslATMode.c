@@ -43,16 +43,34 @@ const char CmdData[CMD_NUM][CMD_LEN]={
 /* Status Info*/
 "AT+SESSIONKEY\r\n",				 /* 18 */
 
-"AT+BM_ARM\r\n",           /* 19 */
-"AT+BM_UNARM\r\n",         /* 20 */
-"AT+BM_DOOR_OPEN_LF\r\n",    /* 21 */
-"AT+BM_DOOR_OPEN_RF\r\n",    /* 22 */
-"AT+BM_DOOR_OPEN_LFRF\r\n",  /* 23 */
-"AT+DISCONNECT\r\n", /*24*/
-"AT+CONNECT\r\n", /*25*/
-"AT+CARIN\r\n", /*26*/
-"AT+CAR_OUT_NEAR\r\n", /*27*/
-"AT+CAR_OUT_FAR\r\n", /*28*/
+//"AT+BM_ARM\r\n",           /* 19 */
+//"AT+BM_UNARM\r\n",         /* 20 */
+//"AT+BM_DOOR_OPEN_LF\r\n",    /* 21 */
+//"AT+BM_DOOR_OPEN_RF\r\n",    /* 22 */
+//"AT+BM_DOOR_OPEN_LFRF\r\n",  /* 23 */
+//"AT+DISCONNECT\r\n", /*24*/
+//"AT+CONNECT\r\n", /*25*/
+//"AT+CARIN\r\n", /*26*/
+//"AT+CAR_OUT_NEAR\r\n", /*27*/
+//"AT+CAR_OUT_FAR\r\n", /*28*/
+
+
+"AT+BM_DOOR_OPEN_LF\r\n",	/*19*/
+"AT+BM_DOOR_ONE_LF\r\n",	/*20*/
+"AT+BM_DOOR_TWO_LF\r\n",	/*21*/
+"AT+BM_DOOR_THREE_LF\r\n",	/*22*/
+"AT+BM_DOOR_FOUR_LF\r\n",	/*23*/
+"AT+BM_DOOR_OPEN_RF\r\n",	/*24*/
+"AT+BM_DOOR_ONE_RF\r\n",	/*25*/
+"AT+BM_DOOR_TWO_RF\r\n",	/*26*/
+"AT+BM_DOOR_THREE_RF\r\n",	/*27*/
+"AT+BM_DOOR_FOUR_RF\r\n",	/*28*/
+"AT+BM_DOOR_OPEN_LFRF\r\n",	/*29*/
+"AT+CONNECT\r\n",	/*30*/
+"AT+DISCONNECT\r\n",	/*31*/
+"AT+CARIN\r\n",	/*32*/
+"AT+CAR_OUT_NEAR\r\n",	/*33*/
+"AT+CAR_OUT_FAR\r\n",	/*34*/
 
 };
 #elif JLPOC

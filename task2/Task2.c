@@ -134,7 +134,7 @@ void DecodeATCmdTask(uint8_t* Data,uint16_t Len)
 	if(Len > 5)
 	{
 		Cmd = CmdAnalyer(Data,Len);
-		if(Cmd < CMD_NUM + 1)	//resolve problem of welcome 20180911 huangtinxuan
+		if(Cmd < CMD_NUM + 1)	
 		{
 			/* Sent CAN packets*/
 			ExcuteATCmdTask(Cmd);
@@ -228,7 +228,7 @@ void ExcuteATCmdTask(uint8_t Cmd)
 		//MslCANCmdExecute(BM_SET_BM_Arm);
 		//TaskStopPeriod(&gFlagTaskCANState);
 		
-		TaskFillDATA(BM_SET_BM_Arm);
+		TaskFillDATA(CAN_BM_DOOR_OPEN_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 		//TaskCreatOnceParm(&gFlagTaskCANCMD,3,&gTimerTabTaskCANCMD,50,TaskSendCANCMD,BM_SET_BM_Arm);
@@ -238,7 +238,7 @@ void ExcuteATCmdTask(uint8_t Cmd)
 		////MslCANCmdExecute(BM_UNSET_BM_Arm);
 		//TaskStopPeriod(&gFlagTaskCANState);
 		
-		TaskFillDATA(BM_UNSET_BM_Arm);
+		TaskFillDATA(CAN_BM_DOOR_ONE_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 		//TaskSendCANCMD(BM_UNSET_BM_Arm);
@@ -246,42 +246,78 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	case 21 :
 		/*pass verify*/
 		//MslCANCmdExecute(BM_DOOROPENCMD_LF);
-		TaskFillDATA(BM_DOOROPENCMD_LF);
+		TaskFillDATA(CAN_BM_DOOR_TWO_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 22 :
 		/*pass verify*/
 		//MslCANCmdExecute(BM_DOOROPENCMD_RF);
-		TaskFillDATA(BM_DOOROPENCMD_RF);
+		TaskFillDATA(CAN_BM_DOOR_THREE_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 23 :
 		/*pass verify*/
 		//MslCANCmdExecute(BM_DOOROPENCMD_LFRF);
-		TaskFillDATA(BM_DOOROPENCMD_LFRF);
+		TaskFillDATA(CAN_BM_DOOR_FOUR_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 24 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_OPEN_RF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 25 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_ONE_RF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 26 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_TWO_RF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 27 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_THREE_RF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 28 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_FOUR_RF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 29 :
+		/*pass verify*/
+		TaskFillDATA(CAN_BM_DOOR_OPEN_LFRF);
+		TaskStart(&gFlagTaskCANCMD);
+		gTimerTabTaskCANCMDCouter = 3;
+	break;
+	case 31 :
 		gBLEConnect = Disconnect;
 		//gBLE_CarRange = None;
 	break;
-	case 25 :
+	case 30 :
 		gBLEConnect = Connect;
 	break;
-	case 26 :
+	case 32 :
 	//if(gBLEConnect == Connect){
 		gBLE_CarRange = InCar;
 	//}
 	break;
-	case 27 :
+	case 33 :
 	//if(gBLEConnect == Connect){
 		gBLE_CarRange = OutCarNear;
 	//}
 	break;
-	case 28 :
+	case 34 :
 	//if(gBLEConnect == Connect){
 		gBLE_CarRange = OutCarFar;
 	//}

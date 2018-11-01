@@ -180,24 +180,24 @@ void TaskCANState(void){
 		//if((gBLEConnect == Connect)&&(gConnectCar == 0)){
 		if(gBLEConnect == Connect){
 			if(gBLE_CarRange == InCar){
-				MslCANCmdExecuteBM(BM_POSITION_INSIDE,BLE_CONNECT);
+				MslCANCmdExecuteBM(CAN_CARIN,CAN_CONNECT);
 			//gConnectCar = 1;
 		}
 			else if(gBLE_CarRange == OutCarNear){
-			MslCANCmdExecuteBM(BM_POSITION_OUTSIDE_NEAR,BLE_CONNECT);
+			MslCANCmdExecuteBM(CAN_CAR_OUT_NEAR,CAN_CONNECT);
 			//gConnectCar = 1;
 		}
 			else if(gBLE_CarRange == OutCarFar){
-			MslCANCmdExecuteBM(BM_POSITION_OUTSIDE_FAR,BLE_CONNECT);
+			MslCANCmdExecuteBM(CAN_CAR_OUT_FAR,CAN_CONNECT);
 			//gConnectCar = 1;
 		}
 			else{
-			MslCANCmdExecute(BLE_CONNECT);
+			MslCANCmdExecuteNew(CAN_CONNECT);
 			}
 			//gConnectCar = 1;
 		}
 		else if(gBLEConnect == Disconnect){
-			MslCANCmdExecute(BLE_DISCONNECT);
+			MslCANCmdExecuteNew(CAN_DISCONNECT);
 			gBLE_CarRange = None;
 			//gConnectCar = 0;
 		}
@@ -224,10 +224,11 @@ void TaskTwo(void){
 }
 void TaskFillDATA(uint8_t function){
 	 
-		CANDataReset(&gsTxCANData);
-		CANDataFill(&gsTxCANData,function);
-		//CANDataFill_New(&gsTxCANData,function);
-		memcpy(&vsTxCANData,&gsTxCANData,sizeof(T_CANDATA));
+		//CANDataReset(&gsTxCANData);
+		//CANDataFill(&gsTxCANData,function);
+		CANDataFill_New(&vsTxCANData,function);
+		
+		//memcpy(&vsTxCANData,&gsTxCANData,sizeof(T_CANDATA));
 		//BspCANSentA(vsTxCANData.StdID,vsTxCANData.Data,8);
 }
 void TaskSendCANCMD(void){

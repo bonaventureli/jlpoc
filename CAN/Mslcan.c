@@ -60,23 +60,24 @@ void CANDataFill(T_CANDATA *CANData,uint8_t Function)
 /*Mask data of CAN*/
 const T_CAN_MATRIX_NEW MaskMatrix_JL[] = {
 /*NUM	StdID	StartBit	VauleLen	Vaule	*/
-/*00*/	{0x4F2,	8,	3,	0x00	},
-/*01*/	{0x4F2,	8,	3,	0x01	},
-/*02*/	{0x4F2,	8,	3,	0x02	},
-/*03*/	{0x4F2,	8,	3,	0x03	},
-/*04*/	{0x4F2,	8,	3,	0x04	},
+/*00*/	{0x000,	0,	0,	0x00	},
+/*01*/	{0x4F2,	8,	3,	0x00	},
+/*02*/	{0x4F2,	8,	3,	0x01	},
+/*03*/	{0x4F2,	8,	3,	0x02	},
+/*04*/	{0x4F2,	8,	3,	0x03	},
+/*05*/	{0x4F2,	8,	3,	0x04	},
 /*06*/	{0x4F2,	11,	3,	0x00	},
 /*07*/	{0x4F2,	11,	3,	0x01	},
 /*08*/	{0x4F2,	11,	3,	0x02	},
 /*09*/	{0x4F2,	11,	3,	0x03	},
 /*10*/	{0x4F2,	11,	3,	0x04	},
-/*12*/	{0x4F2,	2,	1,	0x01	},
+/*11*/	{0x4F2,	2,	1,	0x01	},
+/*12*/	{0x4F4,	0,	1,	0x01	},
 /*13*/	{0x4F4,	0,	1,	0x00	},
-/*14*/	{0x4F4,	0,	1,	0x01	},
-/*15*/	{0x4F4,	1,	2,	0x01	},
-/*16*/	{0x4F4,	1,	2,	0x02	},
-/*17*/	{0x4F4,	1,	2,	0x03	},
-                      
+/*14*/	{0x4F4,	1,	2,	0x01	},
+/*15*/	{0x4F4,	1,	2,	0x02	},
+/*16*/	{0x4F4,	1,	2,	0x03	},
+                 
 }; 
 
 void CANDataFill_New(T_CANDATA *CANData,uint8_t Function)
@@ -149,14 +150,35 @@ void MslCANCmdExecute(uint8_t Function)
 		gsTxCANData.ReSentCount = RESENT_COUNT;	
 	}	
 }
+/*add lifei*/
+void MslCANCmdExecuteNew(uint8_t Function)
+{
+	/*Reset Data*/
+	CANDataReset(&gsTxCANData);
+	/*Load Function Opcode into Buff*/
+	CANDataFill_New(&gsTxCANData,Function);
+	//CANDataFill(&gsTxCANData,FRAME_ASSEMBLY_1);
+	//CANDataFill(&gsTxCANData,FRAME_ASSEMBLY_2);
+	/*...*/
+	
+	/*Sent CAN Data Twice*/
+	MslCANDataSent(&gsTxCANData);
+	if(CAN_TX_RESPOND_EN == 1)
+	{
+		/*Set Sent Busy*/
+		gsTxCANData.SentBusy = 1;
+		gsTxCANData.ReSentCount = RESENT_COUNT;	
+	}	
+}
 
 void MslCANCmdExecuteBM(uint8_t Function,uint8_t Function1)
 {
 	/*Reset Data*/
 	CANDataReset(&gsTxCANData);
 	/*Load Function Opcode into Buff*/
-	CANDataFill(&gsTxCANData,Function);
-	CANDataFill(&gsTxCANData,Function1);
+	CANDataFill_New(&gsTxCANData,Function);
+	CANDataFill_New(&gsTxCANData,Function1);
+	
 	//CANDataFill(&gsTxCANData,FRAME_ASSEMBLY_1);
 	//CANDataFill(&gsTxCANData,FRAME_ASSEMBLY_2);
 	/*...*/
