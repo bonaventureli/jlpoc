@@ -60,7 +60,7 @@ void main( void )
 		__nop();
 		//MslCANSentDemo();
 		
-		#if 1
+		#if 0
 			Task1();
 		#else
 			Task2();
