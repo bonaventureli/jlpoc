@@ -226,6 +226,7 @@ void TaskFillDATA(uint8_t function){
 	 
 		CANDataReset(&gsTxCANData);
 		CANDataFill(&gsTxCANData,function);
+		//CANDataFill_New(&gsTxCANData,function);
 		memcpy(&vsTxCANData,&gsTxCANData,sizeof(T_CANDATA));
 		//BspCANSentA(vsTxCANData.StdID,vsTxCANData.Data,8);
 }

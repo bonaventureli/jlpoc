@@ -1,8 +1,8 @@
 /******************************************************************************
 ** Filename:    Mslcan.h
 ** Description: This files is designed for the layor of CAN Bus Handle
-** Author:  Huangtingxuan
-** Date: 2018.8.9
+** Author:  
+** Date: 2018.10.31
 ** Copyright (c) by ShangHai Ingeek Information Technology Co.Ltd
 ******************************************************************************/
 //============================================================================
@@ -112,7 +112,14 @@ static T_CAN_MATRIX CANCmdMatrix[] = {
 
 
 };   // The define of CAN Matrix  
-
+/*add lifei 2018-10-31*/
+typedef struct Signalcan{
+	uint32_t  StdID;
+	uint8_t 	StartBit;
+	uint8_t 	BitLenth;
+	uint8_t		SignValue;
+}T_CAN_MATRIX_NEW;  //Used to Matrix of CAN
+/*...*/
 
 
 

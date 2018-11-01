@@ -56,6 +56,41 @@ void CANDataFill(T_CANDATA *CANData,uint8_t Function)
 		CANData->StdID = CANCmdMatrix[Function].StdID;  // Frame ID
 	}
 }
+/*add lifei 2018-10-31*/
+/*Mask data of CAN*/
+const T_CAN_MATRIX_NEW MaskMatrix_JL[] = {
+/*NUM	StdID	StartBit	VauleLen	Vaule	*/
+/*00*/	{0x4F2,	8,	3,	0x00	},
+/*01*/	{0x4F2,	8,	3,	0x01	},
+/*02*/	{0x4F2,	8,	3,	0x02	},
+/*03*/	{0x4F2,	8,	3,	0x03	},
+/*04*/	{0x4F2,	8,	3,	0x04	},
+/*06*/	{0x4F2,	11,	3,	0x00	},
+/*07*/	{0x4F2,	11,	3,	0x01	},
+/*08*/	{0x4F2,	11,	3,	0x02	},
+/*09*/	{0x4F2,	11,	3,	0x03	},
+/*10*/	{0x4F2,	11,	3,	0x04	},
+/*12*/	{0x4F2,	2,	1,	0x01	},
+/*13*/	{0x4F4,	0,	1,	0x00	},
+/*14*/	{0x4F4,	0,	1,	0x01	},
+/*15*/	{0x4F4,	1,	2,	0x01	},
+/*16*/	{0x4F4,	1,	2,	0x02	},
+/*17*/	{0x4F4,	1,	2,	0x03	},
+                      
+}; 
+
+void CANDataFill_New(T_CANDATA *CANData,uint8_t Function)
+{
+  CANDataLoad(CANData->Data,											// Input Data
+							MaskMatrix_JL[Function].StartBit/8,		// StartByte
+							MaskMatrix_JL[Function].StartBit%8,		// StartBit
+							MaskMatrix_JL[Function].BitLenth,		// BitLenth
+							MaskMatrix_JL[Function].SignValue);	// SignValue
+	if(MaskMatrix_JL[Function].StdID != 0)
+	{
+		CANData->StdID = MaskMatrix_JL[Function].StdID;  // Frame ID
+	}
+}
 /******************************************************************************
 * Function Name : MslCANDataSent
 * Description   : CAN Data sent

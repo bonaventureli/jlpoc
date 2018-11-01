@@ -1,4 +1,4 @@
-Renesas Optimizing Linker (V2.06.00 )             18-Oct-2018 16:53:51
+Renesas Optimizing Linker (V2.06.00 )             01-Nov-2018 09:56:41
 
 *** Options ***
 
@@ -58,17 +58,17 @@ RESET
 EIINTTBL
                                   00000200  0000067f       480   200
 .const
-                                  00008000  00009477      1478   4
+                                  00008000  000094f7      14f8   4
 .INIT_DSEC.const
-                                  00009478  00009483         c   4
+                                  000094f8  00009503         c   4
 .INIT_BSEC.const
-                                  00009484  0000948b         8   4
+                                  00009504  0000950b         8   4
 FACI_RAM_CODE.text
-                                  0000948c  000095e1       156   2
+                                  0000950c  00009661       156   2
 .text
-                                  000095e2  00015e49      c868   2
+                                  00009662  00015f19      c8b8   2
 .data
-                                  00015e4c  0001643b       5f0   4
+                                  00015f1c  0001650b       5f0   4
 .data.R
                                   fedfc000  fedfc5ef       5f0   4
 .bss

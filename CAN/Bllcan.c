@@ -375,3 +375,4 @@ uint8_t BllGetValueCan(T_CANDATA *RxData,uint8_t Select)
 
 	return Retval;
 }
+
