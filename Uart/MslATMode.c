@@ -69,8 +69,9 @@ const char CmdData[CMD_NUM][CMD_LEN]={
 "AT+CONNECT\r\n",	/*30*/
 "AT+DISCONNECT\r\n",	/*31*/
 "AT+CARIN\r\n",	/*32*/
-"AT+CAR_OUT_NEAR\r\n",	/*33*/
-"AT+CAR_OUT_FAR\r\n",	/*34*/
+"AT+OUTCAR_NEAR\r\n",	/*33*/
+"AT+OUTCAR_FAR\r\n",	/*34*/
+
 
 };
 #elif JLPOC

@@ -49,8 +49,8 @@ void Task2(void)
 		MslAtPeriodTask();
 		TaskCreatOnce(&gFlagTaskCANCMD,&gTimerTabTaskCANCMDCouter,&gTimerTabTaskCANCMD,50,TaskSendCANCMD);//CAN-50ms
 		TaskCreatPeriod(&gFlagTaskCANState,&gTimerTabTaskCANState,100,TaskCANState);//CAN-100ms
-		TaskCreatPeriod(&gFlagTaskReqBLEConnState,&gTimerTabTaskReqBLEConnState,500,TaskReqBLEConnState);//AT
-		TaskCreatPeriod(&gFlagTaskBLECarRange,&gTimerTabTaskBLECarRange,1000,TaskReqBLECarRange);//AT
+		TaskCreatPeriod(&gFlagTaskReqBLEConnState,&gTimerTabTaskReqBLEConnState,1000,TaskReqBLEConnState);//AT(in out car)
+		//TaskCreatPeriod(&gFlagTaskBLECarRange,&gTimerTabTaskBLECarRange,1000,TaskReqBLECarRange);//AT
 		
 		DataLen = Uart3GetData(gUartRxData); // Get Data From Uart
 		if(DataLen != 0)
@@ -296,12 +296,14 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	break;
 	case 29 :
 		/*pass verify*/
-		TaskFillDATA(CAN_BM_DOOR_OPEN_LFRF);
+		//TaskFillDATA(CAN_BM_DOOR_OPEN_LFRF);
+		TaskFillDATA_LFRF(CAN_BM_DOOR_OPEN_LFRF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 31 :
 		gBLEConnect = Disconnect;
+		gBLE_CarRange = None;
 		//gBLE_CarRange = None;
 	break;
 	case 30 :

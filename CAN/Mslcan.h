@@ -92,6 +92,7 @@ typedef struct CANData{
 #define	CAN_CARIN	14
 #define	CAN_CAR_OUT_NEAR	15
 #define	CAN_CAR_OUT_FAR	16
+#define	CAN_BM_DOOR_OPEN_LFRF_CLOSE	17
 
 
 /*CAN Matrix*/

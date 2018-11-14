@@ -35,6 +35,7 @@ extern uint32_t gTimerTabTask2;
 	extern uint8_t gBLE_CarRange;
 	
 	enum BLEConnect{
+		NA,
 		Disconnect,
 		Connect,
 	};
