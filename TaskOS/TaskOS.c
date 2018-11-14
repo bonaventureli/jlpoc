@@ -25,20 +25,11 @@ uint8_t gFlagTaskReqBLEConnState;
 uint32_t gTimerTabTaskReqBLEConnState;
 void TaskReqBLEConnState(void){
 	MslAtCmdSent(REQ_BLECONNECTSTATE);
-	
-//	CANDataReset(&gsTxCANData);
-//	CANDataFill(&gsTxCANData,BM_SET_BM_Arm);
-//	BspCANSentA(gsTxCANData.StdID,gsTxCANData.Data,8);
 }
 uint8_t gFlagTaskBLECarRange;
 uint32_t gTimerTabTaskBLECarRange;
 void TaskReqBLECarRange(void){
-	MslAtCmdSent(REQ_BLE_CAR_RANGE);
-
-//	CANDataReset(&gsTxCANData);
-//	CANDataFill(&gsTxCANData,DOOR_UNLOCK);
-//	BspCANSentA(gsTxCANData.StdID,gsTxCANData.Data,8);
-	
+	MslAtCmdSent(REQ_BLE_CAR_RANGE);	
 }
  uint8_t gFlagTaskCANCMD;
  uint32_t gTimerTabTaskCANCMD;
@@ -101,13 +92,6 @@ void SetTaskInterval(uint32_t * vTimerTabTask,uint32_t vTimer_task){
 
 void TaskPeriod(void){
 	uint8_t FlagReception = 0;
-//	TaskCreatPeriod(&gFlagTask1,&gTimerTabTask1,1,TaskOne);
-	//TaskCreatPeriod(&gFlagTaskCANState,&gTimerTabTaskCANState,1,TaskCANState);
-
-	
-	//TaskCreatOnce(&gFlagTask2,3,&gTimerTabTask2,700,TaskTwo);
-	//TaskCreatOnceParm(&gFlagTaskCANCMD,3,&gTimerTabTaskCANCMD,700,TaskSendCANCMD,(uint8_t *)0);
-
 	FlagReception = BspCANReceiveQueueA(&gsRxCANData.StdID,&gsRxCANData.Data[0],&gsRxCANData.DataLen);
 	if(FlagReception != 0)
 	{
@@ -176,64 +160,31 @@ uint8_t gConnectCar;
 
 /*peroid CAN 100ms*/
 void TaskCANState(void){
-	
-		//if((gBLEConnect == Connect)&&(gConnectCar == 0)){
-		//if(gBLEConnect == Connect){
 			if(gBLE_CarRange == InCar){
 				MslCANCmdExecuteBM(CAN_CARIN,CAN_CONNECT);
 				gBLEConnect =  Connect;
-			//gConnectCar = 1;
 		}
 			else if(gBLE_CarRange == OutCarNear){
 			MslCANCmdExecuteBM(CAN_CAR_OUT_NEAR,CAN_CONNECT);
 			gBLEConnect =  Connect;
-			//gConnectCar = 1;
 		}
 			else if(gBLE_CarRange == OutCarFar){
 			MslCANCmdExecuteBM(CAN_CAR_OUT_FAR,CAN_CONNECT);
 			gBLEConnect =  Connect;
-			//gConnectCar = 1;
 		}
-//			else{
-//			MslCANCmdExecuteNew(CAN_CONNECT);
-//			}
-			//gConnectCar = 1;
-		//}
+
 		 if(gBLEConnect == Disconnect){
 			MslCANCmdExecuteNew(CAN_DISCONNECT);
 			gBLE_CarRange = None;
-			//gConnectCar = 0;
 		}
-		
-//		if(gBLE_CarRange == InCar){
-//			MslCANCmdExecuteBM(BM_POSITION_INSIDE,BLE_CONNECT);
-//			gConnectCar = 1;
-//		}
-//		else if(gBLE_CarRange == OutCarNear){
-//			MslCANCmdExecuteBM(BM_POSITION_OUTSIDE_NEAR,BLE_CONNECT);
-//			gConnectCar = 1;
-//		}
-//		else if(gBLE_CarRange == OutCarFar){
-//			MslCANCmdExecuteBM(BM_POSITION_OUTSIDE_FAR,BLE_CONNECT);
-//			gConnectCar = 1;
-//		}
-		
-//	CANDataReset(&gsTxCANData);
-//	CANDataFill(&gsTxCANData,BM_POSITION_INSIDE);
-//	BspCANSentA(gsTxCANData.StdID,gsTxCANData.Data,8);
+	
 }
 void TaskTwo(void){
 
 }
 void TaskFillDATA(uint8_t function){
-	 
-		//CANDataReset(&gsTxCANData);
-		//CANDataFill(&gsTxCANData,function);
 		CANDataFill_New(&vsTxCANData,function);
 		CANDataFill_New(&vsTxCANData,CAN_BM_DOOR_OPEN_LFRF_CLOSE);
-		
-		//memcpy(&vsTxCANData,&gsTxCANData,sizeof(T_CANDATA));
-		//BspCANSentA(vsTxCANData.StdID,vsTxCANData.Data,8);
 }
    
 void TaskFillDATA_LFRF(uint8_t function){
@@ -241,7 +192,6 @@ void TaskFillDATA_LFRF(uint8_t function){
 } 
 void TaskSendCANCMD(void){
 	if (gFlagTaskCANCMD == 1){
-	//MslCANDataSent(&gsTxCANData);
 	BspCANSentA(vsTxCANData.StdID,vsTxCANData.Data,8);
 	}
 }
