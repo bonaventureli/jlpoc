@@ -188,6 +188,7 @@ void TaskFillDATA(uint8_t function){
 }
    
 void TaskFillDATA_LFRF(uint8_t function){
+		CANDataReset(&vsTxCANData);
 		CANDataFill_New(&vsTxCANData,function);
 } 
 void TaskSendCANCMD(void){

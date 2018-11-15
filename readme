@@ -2,3 +2,4 @@
 三种状态：断开，车内，车外
 取消AT+FOB_FIND请求消息
 只保留AT+CAR_REQ车辆状态消息
+修改CAN bug

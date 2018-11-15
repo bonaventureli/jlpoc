@@ -1,4 +1,4 @@
-Renesas Optimizing Linker (V2.06.00 )             14-Nov-2018 17:53:10
+Renesas Optimizing Linker (V2.06.00 )             15-Nov-2018 16:12:53
 
 *** Options ***
 
@@ -66,9 +66,9 @@ EIINTTBL
 FACI_RAM_CODE.text
                                   000095d0  00009725       156   2
 .text
-                                  00009726  00016029      c904   2
+                                  00009726  00016015      c8f0   2
 .data
-                                  0001602c  000165cb       5a0   4
+                                  00016018  000165b7       5a0   4
 .data.R
                                   fedfc000  fedfc59f       5a0   4
 .bss

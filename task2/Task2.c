@@ -196,12 +196,13 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	break;
 	case 15 :
 		/*Car Inside*/
-		SetKeyStatus(1);
-		if(GetFireButtom() == 1)
-		{
-			SetFireButtom(0);
-			MslCANCmdExecute(ENGINE_START);
-		}
+		gBLE_CarRange = InCar;
+//		SetKeyStatus(1);
+//		if(GetFireButtom() == 1)
+//		{
+//			SetFireButtom(0);
+//			MslCANCmdExecute(ENGINE_START);
+//		}
 	break;
 	case 16 :
 		/*Car Outside*/
