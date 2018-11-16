@@ -197,17 +197,22 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	case 15 :
 		/*Car Inside*/
 		gBLE_CarRange = InCar;
-//		SetKeyStatus(1);
-//		if(GetFireButtom() == 1)
-//		{
-//			SetFireButtom(0);
-//			MslCANCmdExecute(ENGINE_START);
-//		}
+		#if 0
+		SetKeyStatus(1);
+		if(GetFireButtom() == 1)
+		{
+			SetFireButtom(0);
+			MslCANCmdExecute(ENGINE_START);
+		}
+		#endif
 	break;
 	case 16 :
 		/*Car Outside*/
+		gBLE_CarRange = OutCarNear;
+		#if 0
 		SetKeyStatus(0);
 		__nop();
+		#endif
 	break;
 	case 17 :
 		/*Welcome*/
@@ -219,79 +224,56 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	break;
 	/*add lifei 2018.10.11*/
 	case 19 :
-		/*pass verify*/
-		//MslCANCmdExecute(BM_SET_BM_Arm);
-		//TaskStopPeriod(&gFlagTaskCANState);
-		
 		TaskFillDATA(CAN_BM_DOOR_OPEN_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
-		//TaskCreatOnceParm(&gFlagTaskCANCMD,3,&gTimerTabTaskCANCMD,50,TaskSendCANCMD,BM_SET_BM_Arm);
 	break;
 	case 20 :
-		/*pass verify*/
-		////MslCANCmdExecute(BM_UNSET_BM_Arm);
-		//TaskStopPeriod(&gFlagTaskCANState);
-		
 		TaskFillDATA(CAN_BM_DOOR_ONE_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
-		//TaskSendCANCMD(BM_UNSET_BM_Arm);
 	break;
 	case 21 :
-		/*pass verify*/
-		//MslCANCmdExecute(BM_DOOROPENCMD_LF);
 		TaskFillDATA(CAN_BM_DOOR_TWO_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 22 :
-		/*pass verify*/
-		//MslCANCmdExecute(BM_DOOROPENCMD_RF);
 		TaskFillDATA(CAN_BM_DOOR_THREE_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 23 :
-		/*pass verify*/
-		//MslCANCmdExecute(BM_DOOROPENCMD_LFRF);
 		TaskFillDATA(CAN_BM_DOOR_FOUR_LF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 24 :
-		/*pass verify*/
 		TaskFillDATA(CAN_BM_DOOR_OPEN_RF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 25 :
-		/*pass verify*/
 		TaskFillDATA(CAN_BM_DOOR_ONE_RF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 26 :
-		/*pass verify*/
 		TaskFillDATA(CAN_BM_DOOR_TWO_RF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 27 :
-		/*pass verify*/
 		TaskFillDATA(CAN_BM_DOOR_THREE_RF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 28 :
-		/*pass verify*/
 		TaskFillDATA(CAN_BM_DOOR_FOUR_RF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
 	break;
 	case 29 :
-		/*pass verify*/
-		//TaskFillDATA(CAN_BM_DOOR_OPEN_LFRF);
 		TaskFillDATA_LFRF(CAN_BM_DOOR_OPEN_LFRF);
 		TaskStart(&gFlagTaskCANCMD);
 		gTimerTabTaskCANCMDCouter = 3;
@@ -299,25 +281,22 @@ void ExcuteATCmdTask(uint8_t Cmd)
 	case 31 :
 		gBLEConnect = Disconnect;
 		gBLE_CarRange = None;
-		//gBLE_CarRange = None;
 	break;
 	case 30 :
 		gBLEConnect = Connect;
 	break;
 	case 32 :
-	//if(gBLEConnect == Connect){
 		gBLE_CarRange = InCar;
-	//}
 	break;
 	case 33 :
-	//if(gBLEConnect == Connect){
 		gBLE_CarRange = OutCarNear;
-	//}
 	break;
-	case 34 :
-	//if(gBLEConnect == Connect){
+	case 34 :	
 		gBLE_CarRange = OutCarFar;
-	//}
+	break;
+	case 35 :	
+		gBLEConnect = Disconnect;
+		gBLE_CarRange = None;
 	break;
 	default :
 	break;

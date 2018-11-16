@@ -1,7 +1,7 @@
 /******************************************************************************
 ** Filename:    MslATMode.c
 ** Description: This files is used to the AT+MODE Functions
-** Author:  Huangtingxuan
+** Author:  
 ** Date: 2018-09-10
 ** Revise: 
 ** Copyright (c) by ShangHai Ingeek Information Technology Co.Ltd
@@ -71,6 +71,7 @@ const char CmdData[CMD_NUM][CMD_LEN]={
 "AT+CARIN\r\n",	/*32*/
 "AT+OUTCAR_NEAR\r\n",	/*33*/
 "AT+OUTCAR_FAR\r\n",	/*34*/
+"AT+FOB_NO\r\n",	/*35*/
 
 
 };

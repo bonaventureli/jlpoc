@@ -3,3 +3,23 @@
 取消AT+FOB_FIND请求消息
 只保留AT+CAR_REQ车辆状态消息
 修改CAN bug
+
+0.4版本
+Task2文件中删掉不必要的注释代码
+case 15:
+case 32:
+上面两个case处理的功能一样，case 15是AT+INCAR, case 32是AT+CARIN
+兼容蓝牙发过来的不同数据。
+
+case 16:
+case 33:
+
+case 16是功能AT+OUTCAR
+case 33是功能AT+OUTCAR_NEAR
+为了兼容蓝牙发来的不同数据，上面两个case实现的功能一样
+
+case 31:
+case 35:
+兼容AT+DISCONNECT和AT+FOB_NO两个指令，功能一样
+
+测试蓝牙固件:两种固件都支持
