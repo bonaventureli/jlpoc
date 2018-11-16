@@ -37,6 +37,8 @@ typedef struct
 	uint8_t		EngineSpeed1;
 	uint8_t		CarSpeed;
 	
+	uint8_t   BCM_JL_power; 
+	
 	uint8_t 	Reserved1;
 	uint8_t 	Reserved2;
 }T_Car_Status; 

@@ -40,6 +40,7 @@ void Task2(void)
 	gTimerTabTaskCANCMDCouter = 0;
 	while(1)
 	{
+		TaskPeriod();
 		MslAtPeriodTask();
 		TaskCreatOnce(&gFlagTaskCANCMD,&gTimerTabTaskCANCMDCouter,&gTimerTabTaskCANCMD,50,TaskSendCANCMD);//CAN-50ms
 		TaskCreatPeriod(&gFlagTaskCANState,&gTimerTabTaskCANState,100,TaskCANState);//CAN-100ms

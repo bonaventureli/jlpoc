@@ -1,8 +1,8 @@
 /******************************************************************************
 ** Filename:    Bllcan.c
 ** Description: This files is designed for the layor of CAN Bus Handle
-** Author:  Huangtingxuan
-** Date: 2018-09-11
+** Author:  
+** Date: 2018-11-16
 ** Revise: 
 ** Copyright (c) by ShangHai Ingeek Information Technology Co.Ltd
 ******************************************************************************/
@@ -44,6 +44,7 @@
 #define INSIDE_TEMPER							15
 #define OUTSIDE_TEMPER						16
 #define STATUS_FAN 								17
+#define STATUS_JL_POWER						18
 
 #define STATUS_OIL_VOLUME  			
 #define STATUS_TEMPERATURN
@@ -70,6 +71,7 @@ const T_MASK_MATRIX MaskMatrix[] = {
 /*15*/ {40,		    8,	    }, //car inside temperature
 /*16*/ {8,		    8,	    }, //car outside temperature
 /*17*/ {26,		    4,	    }, //fan status
+/*18*/ {32,		    3,	    }, //jl BCM_PowerMode status
 /*...*/                                     
 }; 
 
@@ -328,7 +330,16 @@ void MslGetCarOutsideTemperature(T_CANDATA *RxData)
 {
 	gsCarStatus.CarOutsideTemperature = BllGetValueCan(RxData,OUTSIDE_TEMPER);
 }
-
+/******************************************************************************
+** Function:    MslGetCarState_JL
+** Description: To get the status of skylight
+** Parameter:   Received data struct point
+** Return:      None  lifei 2018/11/16
+******************************************************************************/
+void MslGetCarState_JL(T_CANDATA *RxData)
+{
+	gsCarStatus.BCM_JL_power = BllGetValueCan(RxData,STATUS_JL_POWER);
+}
 /******************************************************************************
 ** Function:    MslGetFanStatus
 ** Description: To get the status of fan

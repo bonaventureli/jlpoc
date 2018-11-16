@@ -19,6 +19,8 @@
 #define ID_MD1_Position						0x5E0 //skylight status
 #define ID_KLIMA_SENSOR_02				0x5E1 //sensor status
 #define	ID_KLIMA_03								0x66E	//temperature of inside car
+
+#define ID_JL_BCM	0x2D7
 extern uint8_t gFlagTask1;
 /*task execute couter*/
 //uint32_t gCouterTask1;

@@ -1,4 +1,5 @@
 #include "TaskOS.h"
+#include "MslGattMode.h"
 
 /*task flag*/
 uint8_t gFlagTask1;
@@ -146,6 +147,14 @@ void TaskPeriod(void){
 			case ID_KLIMA_SENSOR_02:	//outside car temperature
 				MslGetCarOutsideTemperature(&gsRxCANData);	//get outside car temperature
 			break;
+			
+			case ID_JL_BCM:	//jlpoc BCM
+			
+				MslGetCarState_JL(&gsRxCANData);
+				//if(gsCarStatus.BCM_JL_power == 0x01){
+				//MslAtCmdSent(REQ_BLECONNECTSTATE);
+				//}
+			break;
 	
 			/*...*/
 			
@@ -160,23 +169,30 @@ uint8_t gConnectCar;
 
 /*peroid CAN 100ms*/
 void TaskCANState(void){
+	if(gsCarStatus.BCM_JL_power == 0x01){
 			if(gBLE_CarRange == InCar){
 				MslCANCmdExecuteBM(CAN_CARIN,CAN_CONNECT);
 				gBLEConnect =  Connect;
+				gsCarStatus.BCM_JL_power = 0x00;
 		}
 			else if(gBLE_CarRange == OutCarNear){
 			MslCANCmdExecuteBM(CAN_CAR_OUT_NEAR,CAN_CONNECT);
 			gBLEConnect =  Connect;
+			gsCarStatus.BCM_JL_power = 0x00;
 		}
 			else if(gBLE_CarRange == OutCarFar){
 			MslCANCmdExecuteBM(CAN_CAR_OUT_FAR,CAN_CONNECT);
 			gBLEConnect =  Connect;
+			gsCarStatus.BCM_JL_power = 0x00;
 		}
 
 		 if(gBLEConnect == Disconnect){
 			MslCANCmdExecuteNew(CAN_DISCONNECT);
 			gBLE_CarRange = None;
+			gsCarStatus.BCM_JL_power = 0x00;
 		}
+	}
+	
 	
 }
 void TaskTwo(void){
